@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<permissions>
+  <library name="com.gibsson.basic.service.lib"
+    file="/system/framework/com.gibsson.basic.service.lib.jar"/>
+</permissions>
