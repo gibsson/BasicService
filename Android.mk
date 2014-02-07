@@ -40,4 +40,20 @@ LOCAL_PACKAGE_NAME := BasicServiceApp
 LOCAL_SDK_VERSION := current
 LOCAL_PROGUARD_ENABLED := disabled
 LOCAL_CERTIFICATE := platform
+LOCAL_REQUIRED_MODULES := libjni_basicservice
 include $(BUILD_PACKAGE)
+
+# Build JNI Shared Library
+LOCAL_PATH:= $(LOCAL_PATH)/jni
+include $(CLEAR_VARS)
+LOCAL_MODULE_TAGS := optional
+LOCAL_CFLAGS := -Werror -Wno-error=unused-parameter
+LOCAL_SRC_FILES:= jni_basicservice.cpp
+LOCAL_C_INCLUDES += $(JNI_H_INCLUDE)
+LOCAL_MODULE := libjni_basicservice
+LOCAL_SHARED_LIBRARIES := \
+	libhardware \
+	libnativehelper \
+	libcutils
+LOCAL_ARM_MODE := arm
+include $(BUILD_SHARED_LIBRARY)

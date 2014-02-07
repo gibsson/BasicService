@@ -19,6 +19,12 @@ class IBasicServiceImpl extends IBasicService.Stub {
   private final Context context;
   private int value;
 
+  static {
+	  System.loadLibrary("jni_basicservice");
+  }
+
+  private native int jniGetValue();
+
   IBasicServiceImpl(Context context) {
     this.context = context;
   }
@@ -34,7 +40,7 @@ class IBasicServiceImpl extends IBasicService.Stub {
 
   public int setValue(int val) {
     if (DEBUG) Slog.d(TAG, "Setting the value to " + val);
-    value = val + 42;
+    value = val + (jniGetValue()%42);
     return 0;
   }
 }
